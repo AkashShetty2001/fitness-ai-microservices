@@ -24,10 +24,11 @@ public class User extends BaseEntity {
     private String emailId;
 
     @Column(nullable = false)
-
+    @ToString.Exclude
     private String password;
 
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private UserRole role = UserRole.USER;
 
 }
