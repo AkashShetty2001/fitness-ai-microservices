@@ -4,10 +4,12 @@ What the code uses today and how each piece works. Versions come from `userServi
 
 | Topic | File |
 | --- | --- |
-| Overview of every dependency | this page |
-| Soft delete and auditing | [persistence.md](persistence.md) |
+| BCrypt password hashing | [bcrypt-password-hashing.md](bcrypt-password-hashing.md) |
+| Bean Validation and error handling | [validation-and-errors.md](validation-and-errors.md) |
+| MapStruct mapping | [mapstruct.md](mapstruct.md) |
+| JPA auditing and soft delete | [persistence.md](persistence.md) |
 | Flyway migrations | [flyway.md](flyway.md) |
-| Environment configuration (`.env`) | [configuration.md](configuration.md) |
+| `.env` and application configuration | [configuration.md](configuration.md) |
 | Lombok | [lombok.md](lombok.md) |
 
 ## Dependency overview
@@ -15,16 +17,18 @@ What the code uses today and how each piece works. Versions come from `userServi
 | Dependency | Role in the project |
 | --- | --- |
 | Java 21 | Language/runtime |
-| Spring Boot 4.1.1 (parent) | Dependency management, auto-configuration, `spring-boot-maven-plugin` |
-| `spring-boot-starter-webmvc` | Servlet-based web layer for HTTP endpoints (no controllers yet) |
+| Spring Boot 4.1.1 (parent) | Dependency management and auto-configuration |
+| `spring-boot-starter-webmvc` | HTTP controllers (`UserController`) |
 | `spring-boot-starter-data-jpa` | JPA/Hibernate and Spring Data repositories |
-| `spring-boot-starter-validation` | Bean Validation (Jakarta) for request/entity constraints; not used by any class yet |
-| `postgresql` (runtime) | JDBC driver for PostgreSQL |
+| `spring-boot-starter-validation` | Bean Validation on request DTOs |
+| `spring-security-crypto` | `BCryptPasswordEncoder` (no Spring Security filter chain) |
+| `mapstruct` 1.6.3 + `mapstruct-processor` | Compile-time DTO/entity mapping |
+| `lombok` + `lombok-mapstruct-binding` 0.2.0 | Boilerplate generation, compatible with MapStruct |
+| `postgresql` (runtime) | JDBC driver |
 | `spring-boot-starter-flyway`, `flyway-core`, `flyway-database-postgresql` | Versioned schema migrations |
 | `java-dotenv` 5.2.2 | Loads `.env` into system properties |
-| `lombok` (optional) | Generates boilerplate at compile time |
 | `spring-boot-starter-validation-test`, `spring-boot-starter-webmvc-test` (test) | Test support |
 
 ## Not in the code yet
 
-Password hashing (e.g. BCrypt), JWT and Kafka are not present. Add a page here when they are introduced.
+JWT and Kafka. Add a page here when they are introduced.

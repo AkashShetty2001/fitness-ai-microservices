@@ -2,47 +2,34 @@
 
 ## userService
 
-**Endpoints implemented: none.**
+Base path: `/api/v1/users`
 
-`userService` includes the Spring Web MVC starter, but the codebase has no `@RestController` / `@RequestMapping` classes yet, so no HTTP endpoints are exposed. The service starts, connects to PostgreSQL, applies Flyway migrations and validates the schema against the entities.
-
-When an endpoint is added, document it in this folder (one file per endpoint, e.g. `post-users.md`) using the template below.
-
-### Endpoint template
-
-```
-# <METHOD> <path>
-
-Short description.
-
-## Request
-| Part | Name | Type | Required | Notes |
+| Method | Path | Description | Success | Errors |
 | --- | --- | --- | --- | --- |
-| Header |  |  |  |  |
-| Path |  |  |  |  |
-| Query |  |  |  |  |
-| Body |  |  |  |  |
+| POST | `/api/v1/users/register` | Register a new user | 201 | 400, 409 |
 
-## Response
-| Status | Meaning | Body |
-| --- | --- | --- |
+Details: [post-register.md](post-register.md)
 
-## Example
-(request / response JSON)
+## Common response envelope
+
+All userService endpoints return `UserApiResponse<T>`:
+
+```json
+{
+  "success": true,
+  "error": null,
+  "message": "…",
+  "data": { }
+}
 ```
 
-### Data shape available for future endpoints
+| Field | Success response | Error response |
+| --- | --- | --- |
+| `success` | `true` | `false` |
+| `error` | `null` | error text |
+| `message` | success text | `null` |
+| `data` | payload | `null` |
 
-The `User` entity (table `users`) has these fields:
+## Adding a new endpoint
 
-| Field | JSON-style name | Type | Constraints |
-| --- | --- | --- | --- |
-| id | `id` | long | generated, primary key |
-| firstName | `firstName` | string | optional |
-| lastName | `lastName` | string | optional |
-| emailId | `emailId` | string | unique, not null in the database |
-| password | `password` | string | not null |
-| role | `role` | enum `USER` \| `ADMIN` | defaults to `USER` |
-| createdAt | `createdAt` | timestamp | set automatically, not updatable |
-| updatedAt | `updatedAt` | timestamp | set automatically on update |
-| deletedAt | `deletedAt` | timestamp | set on soft delete |
+Create one file per endpoint named `<method>-<name>.md` and add it to the table above.
