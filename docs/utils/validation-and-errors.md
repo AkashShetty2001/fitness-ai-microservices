@@ -19,6 +19,7 @@
 | `MethodArgumentNotValidException` | 400, field errors sorted and joined with `; ` |
 | `UserAlreadyExistsException` | 409 |
 | `DataIntegrityViolationException` | 409 |
+| `UserNotFoundException` | 404 |
 
 Each handler returns a `UserApiResponse` with `success=false`, so clients always receive the same envelope.
 

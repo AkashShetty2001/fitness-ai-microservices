@@ -7,8 +7,9 @@ Base path: `/api/v1/users`
 | Method | Path | Description | Success | Errors |
 | --- | --- | --- | --- | --- |
 | POST | `/api/v1/users/register` | Register a new user | 201 | 400, 409 |
+| GET | `/api/v1/users/{userId}` | Get a user profile | 200 | 404 |
 
-Details: [post-register.md](post-register.md)
+Details: [post-register.md](post-register.md), [get-user-profile.md](get-user-profile.md)
 
 ## Common response envelope
 

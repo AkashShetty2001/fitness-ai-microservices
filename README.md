@@ -40,6 +40,7 @@ A microservices-based fitness application built with Spring Boot, demonstrating 
 | Method | Endpoint                 | Description            |
 |--------|--------------------------|------------------------|
 | POST   | `/api/v1/users/register` | Register a new user    |
+| GET    | `/api/v1/users/{userId}` | Get a user profile     |
 
 #### Register a user
 
@@ -85,6 +86,35 @@ A microservices-based fitness application built with Spring Boot, demonstrating 
 |--------|----------------------------------------------|
 | 400    | Validation failure (details in `error`)      |
 | 409    | A user with this email already exists        |
+
+#### Get a user profile
+
+`GET /api/v1/users/{userId}`
+
+**Response** — `200 OK`
+
+```json
+{
+  "success": true,
+  "error": null,
+  "message": "User profile retrieved successfully",
+  "data": {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "emailId": "john.doe@example.com",
+    "role": "USER"
+  }
+}
+```
+
+The password is never returned.
+
+**Errors**
+
+| Status | Cause                          |
+|--------|--------------------------------|
+| 404    | No user exists with this ID    |
 
 ## Architecture
 
