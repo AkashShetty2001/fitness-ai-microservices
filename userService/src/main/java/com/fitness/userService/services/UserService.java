@@ -2,7 +2,9 @@ package com.fitness.userService.services;
 
 import com.fitness.userService.dtos.RegisterUserRequestDto;
 import com.fitness.userService.dtos.RegisterUserResponseDto;
+import com.fitness.userService.dtos.UserProfileResponseDto;
 import com.fitness.userService.exceptions.UserAlreadyExistsException;
+import com.fitness.userService.exceptions.UserNotFoundException;
 import com.fitness.userService.mappers.UserMapper;
 import com.fitness.userService.repositories.UserRepository;
 import com.fitness.userService.schemas.User;
@@ -32,5 +34,10 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(requestDto.getPassword()));
 
         return userMapper.toResponseDto(userRepository.save(user));
+    }
+
+    public UserProfileResponseDto getUserProfile(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(()->new UserNotFoundException(userId));
+        return userMapper.toUserProfileResponseDto(user);
     }
 }

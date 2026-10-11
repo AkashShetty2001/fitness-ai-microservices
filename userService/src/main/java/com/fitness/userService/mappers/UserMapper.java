@@ -2,6 +2,7 @@ package com.fitness.userService.mappers;
 
 import com.fitness.userService.dtos.RegisterUserRequestDto;
 import com.fitness.userService.dtos.RegisterUserResponseDto;
+import com.fitness.userService.dtos.UserProfileResponseDto;
 import com.fitness.userService.schemas.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -14,4 +15,6 @@ public interface UserMapper {
     User toEntity(RegisterUserRequestDto requestDto);
 
     RegisterUserResponseDto toResponseDto(User user);
+
+    UserProfileResponseDto toUserProfileResponseDto(User user);
 }

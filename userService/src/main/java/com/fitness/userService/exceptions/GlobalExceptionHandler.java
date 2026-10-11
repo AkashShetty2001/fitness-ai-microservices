@@ -33,4 +33,9 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(UserApiResponse.error("User with this email already exists"));
     }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<UserApiResponse<Void>> handleUserNotFoundException(UserNotFoundException ex){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(UserApiResponse.error(ex.getMessage()));
+    }
 }
