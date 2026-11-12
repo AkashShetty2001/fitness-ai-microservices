@@ -1,4 +1,4 @@
-package com.fitness.userService.schemas;
+    package com.fitness.userService.schemas;
 
 import jakarta.persistence.*;
 import lombok.*;

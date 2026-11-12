@@ -1,25 +1,24 @@
 package com.fitness.activityService.schema;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import lombok.experimental.SuperBuilder;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
 import java.util.Map;
 
-@Document(collation = "activities")
+@Document(collection = "activities")
 @Data
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Activity {
+@EqualsAndHashCode(callSuper = true)
+public class Activity extends BaseEntity {
 
-    private String id;
     private String userId;
     private ActivityType type;
     private Integer duration;
@@ -27,12 +26,6 @@ public class Activity {
     private LocalDateTime startTime;
 
     @Field(name = "metrics")
-    private Map<String, Object> additionaMetrics;
-
-    @CreatedDate
-    private LocalDateTime createdAt;
-
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
+    private Map<String, Object> additionalMetrics;
 
 }
