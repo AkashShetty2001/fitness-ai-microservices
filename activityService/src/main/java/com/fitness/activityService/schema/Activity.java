@@ -19,7 +19,7 @@ import java.util.Map;
 @EqualsAndHashCode(callSuper = true)
 public class Activity extends BaseEntity {
 
-    private String userId;
+    private Long userId;
     private ActivityType type;
     private Integer duration;
     private Integer caloriesBurned;

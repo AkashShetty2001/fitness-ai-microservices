@@ -40,4 +40,8 @@ public class UserService {
         User user = userRepository.findById(userId).orElseThrow(()->new UserNotFoundException(userId));
         return userMapper.toUserProfileResponseDto(user);
     }
+
+    public boolean existsById(Long userId) {
+        return userRepository.existsById(userId);
+    }
 }

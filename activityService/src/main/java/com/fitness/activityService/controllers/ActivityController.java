@@ -12,6 +12,7 @@ import com.fitness.activityService.dtos.TrackActivityResponseDto;
 import com.fitness.activityService.services.ActivityService;
 import com.fitness.activityService.utils.TrackActivityApiResponse;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController 
@@ -22,7 +23,7 @@ public class ActivityController {
     private final ActivityService activityService;
 
     @PostMapping 
-    public ResponseEntity<TrackActivityApiResponse<TrackActivityResponseDto>> trackActivity(@RequestBody TrackActivityRequestDto requestDto){
+    public ResponseEntity<TrackActivityApiResponse<TrackActivityResponseDto>> trackActivity(@Valid @RequestBody TrackActivityRequestDto requestDto){
         TrackActivityResponseDto  responseDto =activityService.trackActivity(requestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(TrackActivityApiResponse.success("Activity tracked successfully", responseDto));
 

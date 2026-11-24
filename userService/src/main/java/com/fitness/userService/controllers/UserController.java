@@ -25,6 +25,11 @@ public class UserController {
                 .body(UserApiResponse.success("User profile retrieved successfully", userProfileResponseDto));
     }
 
+    @GetMapping("/{userId}/validate")
+    public ResponseEntity<Boolean> validateUser(@PathVariable Long userId) {
+        return ResponseEntity.ok(userService.existsById(userId));
+    }
+
     @PostMapping("/register")
     public ResponseEntity<UserApiResponse<RegisterUserResponseDto>> registerUser(
             @Valid @RequestBody RegisterUserRequestDto requestDto) {

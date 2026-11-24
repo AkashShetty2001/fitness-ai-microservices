@@ -14,7 +14,7 @@ import lombok.Data;
 public class TrackActivityResponseDto {
     
     private String id;
-    private String userId;
+    private Long userId;
     private ActivityType type;
     private Integer duration;
     private Integer caloriesBurned;
